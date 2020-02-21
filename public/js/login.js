@@ -1,3 +1,11 @@
+//****************************************************************************/
+// This file contains functionality to be able to log-in to the application  */
+// Only supposed to be used by Valentino's partners.  However, this is not   */
+// a restricted area, since most everyone should be able to access this one  */
+// For the project, we will leave it under the general public menu, in real  */
+// life we will decouple the public website and the staff website.           */
+//****************************************************************************/
+
 $(document).ready(function() {
   // Getting references to our form and inputs
   var loginForm = $("form.login");

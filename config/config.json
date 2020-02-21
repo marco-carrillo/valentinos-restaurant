@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "mydogandcat",
-    "database": "passport_demo",
+    "database": "valentino_db",
     "host": "localhost",
     "dialect": "mysql"
   },

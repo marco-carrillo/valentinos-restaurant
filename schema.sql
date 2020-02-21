@@ -20,9 +20,10 @@ create table roles (
     primary key(id)
 );
 
--- crating table users
+-- creating table users
 create table users (
     id integer auto_increment,
+    email varchar(255) not null,
     password varchar(255) not null,
     role_id integer,
     salary integer,
