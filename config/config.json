@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Rk19822006",
+    "password": "12345",
     "database": "valentino_db",
     "host": "localhost",
     "dialect": "mysql"
