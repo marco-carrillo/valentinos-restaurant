@@ -26,6 +26,15 @@ module.exports = function(app) {
       });
   });
 
+ // Route for creating a new user
+ app.post("/api/createuser", function(req, res){
+  db.User.create(req.body).then (function(dbUser){
+    res.json(dbUser)
+  })
+});
+
+
+
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
