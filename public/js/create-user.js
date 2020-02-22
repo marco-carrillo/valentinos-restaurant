@@ -9,8 +9,7 @@ $(document).ready(function() {
   signUpForm.on("submit", function(event) {
     event.preventDefault();
 
-
-    let role_id = $('input[name=inlineRadioOptions]:checked').val();
+    let role_id = parseInt($('input[name=inlineRadioOptions]:checked').val(),0);
     let userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
@@ -25,21 +24,23 @@ $(document).ready(function() {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
+    signUpUser(userData.email, userData.password,userData.role_id,userData.salary);
     emailInput.val("");
     passwordInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
+  function signUpUser(email, password,roleid,salary) {
+
     $.post("/api/createuser", {
       email: email,
       password: password,
-      role_id: role
+      role_id: roleid,
+      salary: salary
     })
       .then(function(data) {
-        window.location.replace("/members");
+        // window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

@@ -28,6 +28,9 @@ module.exports = function(app) {
 
  // Route for creating a new user
  app.post("/api/createuser", function(req, res){
+
+  console.log(req.body);
+
   db.User.create(req.body).then (function(dbUser){
     res.json(dbUser)
   })

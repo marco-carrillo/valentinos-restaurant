@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
     salary:{
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    role_id:{
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 
@@ -27,9 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
     User.belongsTo(models.Role, {
-      foreignKey: {
-        allowNull: false
-      }
+      foreignKey: 'role_id'
     })
   };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
