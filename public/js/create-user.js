@@ -40,14 +40,33 @@ $(document).ready(function() {
       salary: salary
     })
       .then(function(data) {
-        // window.location.replace("/members");
-        // If there's an error, handle it by throwing up a bootstrap alert
-      })
+          // window.location.replace("/members");
+          console.log(data);
+          alert(alert);
+          $.confirm({
+            title: 'Success!!!!',
+            content: 'Valentino partner created successfully',
+            type: 'green',   
+            buttons: {
+                        delete: {text: 'Yay!!!', btnClass: 'btn-green',
+                        action: function(){}  }
+                      }
+          });  // Jquery confirm
+      })       // then
       .catch(handleLoginErr);
-  }
+  };           // function
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
-    $("#alert").fadeIn(500);
-  }
+    // $("#alert .msg").text(err.responseJSON);
+    // $("#alert").fadeIn(500);
+    $.confirm({
+      title: 'Invalid credentials',
+      content: err.responseJSON,
+      type: 'red',   
+      buttons: {
+                  delete: {text: 'Understand', btnClass: 'btn-red',
+                  action: function(){}  }
+                }
+    });  // Jquery confirm  }
+  };
 });

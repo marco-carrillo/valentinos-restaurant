@@ -32,9 +32,14 @@ module.exports = function(app) {
   console.log(req.body);
 
   db.User.create(req.body).then (function(dbUser){
-    res.json(dbUser)
-  })
-});
+    res.status(200).json({});
+
+    }).catch(function(error){
+      console.log(error);
+      console.log('going through the catch route');
+      res.status(401).json(error);
+      });
+  });
 
 
 
