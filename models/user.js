@@ -17,8 +17,26 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    role_id
+    // The role ID cannot be null
+    role_id:{
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
+    salary: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   });
+
+  //  Creating the associations with the roles table
+  User.associate = function(models) {
+    User.belongsTo(models.Role, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);

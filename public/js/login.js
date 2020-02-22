@@ -2,20 +2,19 @@
 // This file contains functionality to be able to log-in to the application  */
 // Only supposed to be used by Valentino's partners.  However, this is not   */
 // a restricted area, since most everyone should be able to access this one  */
-// For the project, we will leave it under the general public menu, in real  */
-// life we will decouple the public website and the staff website.           */
+// For the project, we will leave it under the general public menu.          */
 //****************************************************************************/
 
 $(document).ready(function() {
   // Getting references to our form and inputs
-  var loginForm = $("form.login");
-  var emailInput = $("input#email-input");
-  var passwordInput = $("input#password-input");
+  let loginForm = $("form.login");
+  let emailInput = $("input#email-input");
+  let passwordInput = $("input#password-input");
 
   // When the form is submitted, we validate there's an email and password entered
   loginForm.on("submit", function(event) {
     event.preventDefault();
-    var userData = {
+    let userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
@@ -41,7 +40,19 @@ $(document).ready(function() {
         // If there's an error, log the error
       })
       .catch(function(err) {
-        console.log(err);
-      });
-  }
-});
+
+      //*******************************************************************************/
+      // The following function provides a message that the user is not  authorized   */
+      //*******************************************************************************/
+        $.confirm({
+          title: 'Invalid credentials',
+          content: 'Please try again.  Or see your manager for assistance',
+          type: 'red',   
+          buttons: {
+                      delete: {text: 'Understand', btnClass: 'btn-red',
+                      action: function(){}  }
+                    }
+        });  // Jquery confirm
+      });    // catch
+  }          // function
+});          // Document ready
