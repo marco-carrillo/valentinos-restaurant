@@ -1,7 +1,7 @@
 {
-  "name": "1-Passport-Example",
+  "name": "valentino-restaurant",
   "version": "1.0.0",
-  "description": "",
+  "description": "Valentino restaturant",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "watch": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Valentino's group",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "2.4.3",
@@ -19,5 +19,13 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "sequelize": "^5.8.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marco-carrillo/valentinos-restaurant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marco-carrillo/valentinos-restaurant/issues"
+  },
+  "homepage": "https://github.com/marco-carrillo/valentinos-restaurant#readme"
 }
