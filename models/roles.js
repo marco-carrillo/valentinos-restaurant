@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-    var Meal_type = sequelize.define("Meal_type", {
-        name: {
+    var Role = sequelize.define("Role", {
+        role_name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -8,13 +8,12 @@ module.exports = function(sequelize, DataTypes) {
         }
 
       },
-      requires_id: {
-          type: DataTypes.BOOLEAN,
-          default: true
+      is_admin: {
+          type: DataTypes.BOOLEAN
     }
 
     });
   
   
-    return Meal_type;
+    return Role;
   };

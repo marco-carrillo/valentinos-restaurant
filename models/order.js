@@ -1,50 +1,58 @@
-module.exports = function(sequelize, DataTypes) {
-  var Order = sequelize.define("Order", {
-    // Giving the role a name of type STRING
-    customer_name: {
-        type: DataTypes.STRING,
-        allowNull:  false
-    },
-    status_id:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    table_id:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    server_id:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    chef_id:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    total_bill:{
-        type: DataTypes.DECIMAL(10,2),
-        allowNull: false,
-        default: true
-    }
-});
-
-//  Creating a foreign key with status
-Order.associate = function(models) {
-    Order.belongsTo(models.Order_status, {
-        foreignKey: {
-        allowNull: false
+module.exports = function (sequelize, DataTypes) {
+    var Order = sequelize.define("Order", {
+        customer_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        total_bill: {
+            type: DataTypes.DECIMAL,
+            allowNull: false,
+            default: 0
         }
     });
-};
-   
-//  Creating a foreign key with tables
-Order.associate = function(models) {
-    Order.belongsTo(models.Table, {
-        foreignKey: {
-        allowNull: false
-        }
-    });
-};
 
-  return Order;
+    Order.associate = function (models) {
+        // We're saying that a Post should belong to an Author
+        // A Post can't be created without an Author due to the foreign key constraint
+        Order.belongsTo(models.Order_status, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+    Order.associate = function (models) {
+        // We're saying that a Post should belong to an Author
+        // A Post can't be created without an Author due to the foreign key constraint
+        Order.belongsTo(models.Table, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+    Order.associate = function (models) {
+        // We're saying that a Post should belong to an Author
+        // A Post can't be created without an Author due to the foreign key constraint
+        Order.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+    Order.associate = function (models) {
+        // We're saying that a Post should belong to an Author
+        // A Post can't be created without an Author due to the foreign key constraint
+        Order.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+    return Order;
 };
