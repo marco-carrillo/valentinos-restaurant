@@ -683,6 +683,221 @@ body, p, h1, h2, h3, h4, h5, h6 {
   transform: scale(1, 1);
 }
 
+/* ****************************************************/
+/*  Added to represent tables that have been served   */
+/* ****************************************************/
+
+.table_svd {
+  background: transparent;
+  text-align: center;
+  width: 300px;
+  font-family: "Cantata One", serif;
+  color: #fff;
+  line-height: 30px;
+  display: inline-block;
+  font-size: 20px;
+  z-index: 2;
+  position: relative;
+  letter-spacing: .42px;
+}
+
+.space{
+  margin-top: 50px;
+}
+
+.table_svd:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #b10400;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.table_svd:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid #b10400;
+  -webkit-transform: scale(1.2, 1.2);
+  -ms-transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2);
+}
+
+.table_svd:hover {
+  color: #b10400;
+}
+
+.table_svd:hover:before {
+  opacity: 0;
+  -webkit-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5);
+}
+
+.table_svd:hover:after {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+
+/* ***********************************************/
+/*  Added to represent tables that are waiting   */
+/* ***********************************************/
+
+.table_wtg {
+  background: transparent;
+  text-align: center;
+  width: 300px;
+  font-family: "Cantata One", serif;
+  color:#111111;
+  line-height: 30px;
+  display: inline-block;
+  font-size: 20px;
+  z-index: 2;
+  position: relative;
+  letter-spacing: .42px;
+}
+
+.table_wtg:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #f8fc07;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.table_wtg:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid #b10400;
+  -webkit-transform: scale(1.2, 1.2);
+  -ms-transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2);
+}
+
+.table_wtg:hover {
+  color: #b10400;
+}
+
+.table_wtg:hover:before {
+  opacity: 0;
+  -webkit-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5);
+}
+
+.table_wtg:hover:after {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+
+/* ****************************************************/
+/*  Added to represent tables that have been served   */
+/* ****************************************************/
+
+
+.table_avl {
+  background: transparent;
+  text-align: center;
+  width: 300px;
+  font-family: "Cantata One", serif;
+  color: #fff;
+  line-height: 30px;
+  display: inline-block;
+  font-size: 20px;
+  z-index: 2;
+  position: relative;
+  letter-spacing: .42px;
+}
+
+.table_avl:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: rgb(8, 211, 8);
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.table_avl:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid #b10400;
+  -webkit-transform: scale(1.2, 1.2);
+  -ms-transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2);
+}
+
+.table_avl:hover {
+  color: #b10400;
+}
+
+.table_avl:hover:before {
+  opacity: 0;
+  -webkit-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5);
+}
+
+.table_avl:hover:after {
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+
 /*****************************/
 /*  Our additions end here   */
 /*****************************/

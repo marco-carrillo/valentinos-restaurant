@@ -41,10 +41,31 @@ module.exports = function(app) {
       });
   });
 
+//*******************************************************************************/
+//  The following route returns information about all of the tables, and their  */
+//  associated order(if available).                                             */
+//*******************************************************************************/
+app.get("/api/allTablesInfo",(req,res)=>{
+    console.log('entered into the api route');
 
+    let sql='SELECT tables.id AS table_id,tables.name AS table_name,tables.occupied AS table_occupied, '+
+            'orders.customer_name AS customer_name,orders.total_bill AS total_bill, order_statuses.name AS order_status '+
+            'FROM `tables` '+ 
+            'LEFT JOIN `orders` ON orders.table_id=tables.id '+
+            'LEFT JOIN `order_statuses` ON order_statuses.id=orders.status_id';
 
-  // Route for logging user out
-  app.get("/logout", function(req, res) {
+    db.sequelize.query(sql).then(tables => {
+                                    console.log(tables);
+                                    res.status(200).json(tables);
+                                  });
+
+});
+
+//***************************************/
+//  The following route logs users out  */
+//  associated order(if available).     */
+//***************************************/
+app.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/");
   });
