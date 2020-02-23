@@ -1,47 +1,48 @@
 -- creating tables records
 
-INSERT INTO tables (max_seating) VALUES(4);
-INSERT INTO tables (max_seating) VALUES(4);
-INSERT INTO tables (max_seating) VALUES(4);
-INSERT INTO tables (max_seating) VALUES(3);
-INSERT INTO tables (max_seating) VALUES(3);
-INSERT INTO tables (max_seating) VALUES(3);
-INSERT INTO tables (max_seating) VALUES(3);
-INSERT INTO tables (max_seating) VALUES(2);
-INSERT INTO tables (max_seating) VALUES(2);
-INSERT INTO tables (max_seating) VALUES(2);
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 1",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 2",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 3",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 4",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 5",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 6",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 7",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 8",false,2,current_timestamp(),current_timestamp());
+INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 9",false,2,current_timestamp(),current_timestamp());
 
 -- Creating records for the roles
-INSERT INTO roles (role_name, is_admin) VALUES ('Manager',true);
-INSERT INTO roles (role_name, is_admin) VALUES ('Server',false);
-INSERT INTO roles (role_name, is_admin) VALUES ('Cook',false);
+INSERT INTO roles (role_name, is_admin,createdAt,updatedAt) VALUES ('Manager',true,current_timestamp(),current_timestamp());
+INSERT INTO roles (role_name, is_admin,createdAt,updatedAt) VALUES ('Server',false,current_timestamp(),current_timestamp());
+INSERT INTO roles (role_name, is_admin,createdAt,updatedAt) VALUES ('Cook',false,current_timestamp(),current_timestamp());
 
 -- Creating records for the meal_type
-INSERT INTO meal_type (name, requires_id) VALUES ('Wines',true);
-INSERT INTO meal_type (name, requires_id) VALUES ('Coffee',false);
-INSERT INTO meal_type (name, requires_id) VALUES ('Water',false);
-INSERT INTO meal_type (name, requires_id) VALUES ('Food',false);
+INSERT INTO meal_types (name, requires_id,createdAt,updatedAt) VALUES ('Wines',true,current_timestamp(),current_timestamp());
+INSERT INTO meal_types (name, requires_id,createdAt,updatedAt) VALUES ('Coffee',false,current_timestamp(),current_timestamp());
+INSERT INTO meal_types (name, requires_id,createdAt,updatedAt) VALUES ('Water',false,current_timestamp(),current_timestamp());
+INSERT INTO meal_types (name, requires_id,createdAt,updatedAt) VALUES ('Food',false,current_timestamp(),current_timestamp());
+
 
 -- Creating records for the meals
-INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id)
-VALUES ('Pasta-Da-Grande',10,9,99,0,true,4);
+INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id,createdAt,updatedAt)
+VALUES ('Pasta-Da-Grande',10,9,99,0,true,4,current_timestamp(),current_timestamp());
 
-INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id)
-VALUES ('London Broil',15,19,125,0,true,4);
+INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id,createdAt,updatedAt)
+VALUES ('London Broil',15,19,125,0,true,4,current_timestamp(),current_timestamp());
 
-INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id)
-VALUES ('Saint-De-Lourev 2001 Red',1,10,250,0,true,1);
+INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id,createdAt,updatedAt)
+VALUES ('Saint-De-Lourev 2001 Red',1,10,250,0,true,1,current_timestamp(),current_timestamp());
 
-INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id)
-VALUES ('Cafe De-Los-Santos Hand-picked',5,1,19,0,true,2);
+INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id,createdAt,updatedAt)
+VALUES ('Cafe De-Los-Santos Hand-picked',5,1,19,0,true,2,current_timestamp(),current_timestamp());
 
-INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id)
-VALUES ('Spring distilled a-Lav',0,1,19,0,true,3);
+INSERT INTO meals (name, time_to_prepare, meal_cost,meal_price,meal_incentive,active, meal_type_id,createdAt,updatedAt)
+VALUES ('Spring distilled a-Lav',0,1,19,0,true,3,current_timestamp(),current_timestamp());
+
 
 -- Creating records for order statuses
-INSERT INTO order_status (name, final_status) VALUES ('NEW',false);
-INSERT INTO order_status (name, final_status) VALUES ('COOKING',false);
-INSERT INTO order_status (name, final_status) VALUES ('READY',false);
-INSERT INTO order_status (name, final_status) VALUES ('SERVED',false);
-INSERT INTO order_status (name, final_status) VALUES ('REJECTED',true);
-INSERT INTO order_status (name, final_status) VALUES ('CLOSED',true);
+INSERT INTO order_statuses (name, final_status,createdAt,updatedAt) VALUES ('NEW',false,current_timestamp(),current_timestamp());
+INSERT INTO order_statuses (name, final_status,createdAt,updatedAt) VALUES ('COOKING',false,current_timestamp(),current_timestamp());
+INSERT INTO order_statuses (name, final_status,createdAt,updatedAt) VALUES ('READY',false,current_timestamp(),current_timestamp());
+INSERT INTO order_statuses (name, final_status,createdAt,updatedAt) VALUES ('SERVED',false,current_timestamp(),current_timestamp());
+INSERT INTO order_statuses (name, final_status,createdAt,updatedAt) VALUES ('CLOSED',true,current_timestamp(),current_timestamp());
+
