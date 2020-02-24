@@ -46,19 +46,28 @@ module.exports = function(app) {
 //  associated order(if available).                                             */
 //*******************************************************************************/
 app.get("/api/allTablesInfo",(req,res)=>{
-    console.log('entered into the api route');
-
-    let sql='SELECT tables.id AS table_id,tables.name AS table_name,tables.occupied AS table_occupied, '+
+  let sql='SELECT tables.id AS table_id,tables.name AS table_name,tables.occupied AS table_occupied, '+
             'orders.customer_name AS customer_name,orders.total_bill AS total_bill, order_statuses.name AS order_status '+
             'FROM `tables` '+ 
             'LEFT JOIN `orders` ON orders.table_id=tables.id '+
             'LEFT JOIN `order_statuses` ON order_statuses.id=orders.status_id';
 
-    db.sequelize.query(sql).then(tables => {
-                                    console.log(tables);
-                                    res.status(200).json(tables);
-                                  });
+    db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
+});
 
+//********************************************************************************/
+//  The following route returns sales per hour (1 row per hour with the number)  */
+//  of sales and the total amount sold per hour.                                 */
+//********************************************************************************/
+app.get("/api/salesByHour",(req,res)=>{
+  let sql='SELECT HOUR(orders.updatedAt) AS hour,COUNT(*) AS nOrders, SUM(total_bill) AS hSales ' +
+          'FROM orders ' +
+          'LEFT JOIN order_statuses ON order_statuses.id=orders.status_id ' +
+          'ORDER BY HOUR(orders.updatedAt) ASCENDING' +
+          'GROUP BY HOUR(orders.updatedAt);' 
+
+  db.sequelize.query(sql).then(sales => {
+    res.status(200).json(sales);});
 });
 
 //***************************************/
