@@ -63,8 +63,8 @@ app.get("/api/salesByHour",(req,res)=>{
   let sql='SELECT HOUR(orders.updatedAt) AS hour,COUNT(*) AS nOrders, SUM(total_bill) AS hSales ' +
           'FROM orders ' +
           'LEFT JOIN order_statuses ON order_statuses.id=orders.status_id ' +
-          'ORDER BY HOUR(orders.updatedAt) ASCENDING' +
-          'GROUP BY HOUR(orders.updatedAt);' 
+          'GROUP BY HOUR(orders.updatedAt) ' + 
+          'ORDER BY HOUR(orders.updatedAt) ASC ;'
 
   db.sequelize.query(sql).then(sales => {
     res.status(200).json(sales);});
