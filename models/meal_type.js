@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
       requires_id: {
           type: DataTypes.BOOLEAN,
           default: true
+    },
+    menu_order: {
+      type: DataTypes.BOOLEAN,
+      default: true
     }
 
     });

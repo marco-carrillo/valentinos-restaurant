@@ -41,6 +41,26 @@ module.exports = function(app) {
       });
   });
 
+//********************************************/
+//  The following route creates a new order  */
+//  and then returns the number of the order */
+//********************************************/
+app.post("/api/createOrder", (req, res) =>{
+  db.Order.create(req.body).then (function(order){
+    res.status(200).json(order);
+  })
+});
+
+//**************************************************/
+//  The following route creates a new order detail */
+//  and then returns the number of the order       */
+//**************************************************/
+app.post("/api/createOrderDetail", (req, res) =>{
+  db.Order_detail.create(req.body).then (function(order){
+    res.status(200).json(order);
+  })
+});
+
 //*******************************************************************************/
 //  The following route returns information about all of the tables, and their  */
 //  associated order(if available).                                             */
@@ -68,6 +88,21 @@ app.get("/api/salesByHour",(req,res)=>{
 
   db.sequelize.query(sql).then(sales => {
     res.status(200).json(sales);});
+});
+
+//*******************************************************************************/
+//  The following route returns the full menu, marked by the manager as active  */
+//  Only items by the manager will be returned.  Also, it will return the order */
+//  for it to be presented in the menu, and the type of item.                   */
+//*******************************************************************************/
+app.get("/api/menu",(req,res)=>{
+  let sql='SELECT t.name as type, m.id,m.name,m.price,t.menu_order '+
+          'FROM meals m '+
+          'LEFT JOIN meal_types t on t.id=m.meal_type_id '+
+          'WHERE active=1 '+
+          'ORDER BY t.menu_order ASC, m.price DESC ';
+  db.sequelize.query(sql).then(menu => {
+    res.status(200).json(menu);});
 });
 
 //***************************************/

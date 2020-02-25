@@ -11,13 +11,5 @@ module.exports = function(sequelize, DataTypes) {
     }
 });
 
-  Role.associate = function(models) {
-    // Associating Role with Users
-    // When a role is deleted, also delete any associated users
-    Role.hasMany(models.User, {
-      onDelete: "cascade"
-    });
-  };
-
   return Role;
 };
