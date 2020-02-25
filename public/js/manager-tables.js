@@ -1,3 +1,10 @@
+//************************************************/
+//  Format numbers with commas using regEdit     /
+//************************************************/
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 //***************************************************************************/
 //  This function creates all of the pictures representing dining tables
 //***************************************************************************/
@@ -11,8 +18,6 @@ function get_table_info(){
     $.get("api/allTablesInfo",{})
        .then(function(raw_data){
            let tables=raw_data[0];
-           console.log(tables);
-           console.log(tables[0].id);
             for(let i=0;i<tables.length;i++){
 
                 //*************************************************************************/
@@ -23,7 +28,7 @@ function get_table_info(){
                 let table_bill=0;
                 if(tables[i].table_occupied){
                     customer=tables[i].customer_name;
-                    table_bill=tables[i].total_bill;
+                    table_bill="$"+numberWithCommas(tables[i].total_bill);
                 }
                 $(idtable).html(`${tables[i].table_name}</br>${customer}</br>${table_bill}</br>`);
                 

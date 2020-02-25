@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="img/express-favicon.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>RedCaynne Re</title>
+        <title>Valentino's</title>
 
         <!-- Icon css link -->
         <link href="vendors/material-icon/css/materialdesignicons.min.css" rel="stylesheet">
@@ -148,23 +148,84 @@
         <!--================START YOUR CODE HERE=================-->
         <section class="booking_table_area booking_area_white">
 
-            <div style="width: 80%; margin:auto">
-                <table class="table">
-    
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Table</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Order №</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Massage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                   
-                    </tbody>
-                </table>
+            <!--**************************************************************** -->
+            <!-- First row contains the heading for the data below               -->
+            <!--**************************************************************** -->
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 text-center border my-5">
+                    <h3>Diner's information</h3>
+                </div>
+                <div class="col-md-9 text-center boder my-5">
+                    <h3>Menu and dining selection</h3>
+                </div>
             </div>
+
+            <!--************************************************ -->
+            <!-- Second row contains information about diners    -->
+            <!--************************************************ -->
+            <div class="row">
+                <div class="col-md-2"></div>  <!-- for formatting purposes only -->
+                <div class="col-md-3 text-center align-items-center">
+                    <div class="input-group mb-3">  <!-- Diner's name-->
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="strat-name-text">Diner's name </span>
+                            </div>
+                            <input id="diner-name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="diner-name-text">
+                    </div>
+                </div>
+                <div class="col-md-2"></div>  <!-- for formatting purposes only -->
+                <div class="col-md-3 text-center align-items-center">
+                    <div class="input-group mb-3">  <!-- Diner's guest -->
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" id="strat-desc-text">Table number</span>
+                        </div>
+                        <input id="table-number" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="table-number-text">
+                    </div>
+                </div>  <!--second column ends here-->
+                <div class="col-md-2"></div>  <!-- for formatting purposes only -->
+            </div>  <!-- second row ends here-->
+    
+            <!--******************************** -->
+            <!-- Third row contains dataTable    -->
+            <!--******************************** -->
+
+            <div class="row">
+                <div class="col-md-2"></div>  <!--for formatting purposes only-->
+                <div class="col-md-8">
+                    <table id="menuTable" class="display compact" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Entree</th>
+                                <th>Catalog</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Order</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menuList">
+                            <!-- Empty, will add menu lists here-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>  <!--for formatting purposes only-->
+            </div>  <!--end of row-->
+
+            <!--******************************************** -->
+            <!-- Forth row contains button to submit data    -->
+            <!--******************************************** -->
+            <div class="row my-5">
+                <!--First row with three columns + formating-->
+                <div class="col-md-12 text-center border my-5">
+                    <!--first button-->
+                    <div class="event_btn_inner" id="submitOrder">
+                        <a class="event_btnm">Close an Order</a>
+                    </div>
+                </div>
+            </div>
+
+
 
 
 
@@ -179,7 +240,7 @@
                         <div class="col-md-3">
                             <aside class="f_widget about_widget">
                                 <div class="f_w_title">
-                                    <h4>ABOUT RedCayenne</h4>
+                                    <h4>ABOUT Valentino's</h4>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ut.</p>
                                 <ul>
@@ -278,8 +339,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <!-- Valentino's theme-->
         <script src="js/theme.js"></script>
         <!--Required for login / Passport-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/login.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="js/host-neworder.js"></script>
 
     </body>
 </html>

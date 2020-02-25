@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
     },
     cost:{
-        type: DataTypes.DECIMAL(10,2),
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     price:{
@@ -32,16 +32,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
     }
 });
-
-//  Creating the foreign key with meal type
-Meal.associate = function(models) {
-    Meal.belongsTo(models.Meal_type, {
-        foreignKey: {
-        allowNull: false
-        }
-    });
-    };
-   
 
   return Meal;
 };
