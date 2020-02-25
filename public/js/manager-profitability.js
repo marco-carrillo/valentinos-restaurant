@@ -3,56 +3,8 @@
 //************************************************/
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-
-
-//***********************************************************************************************/
-//  When user selects a row, following function enables/disables buttons, and then it writes     /
-//  selected row to local storage for other users to know which strategy was selected            /
-//***********************************************************************************************/
-function checkbox_clicked(){
-    var slected = $('#TradingStrategiesList').find('.selected');  // Which row was selected?
-    if(slected.length===0){  // This means, the user de-selected an option, disabling buttons
-
-        $("#runStrategy").attr("disabled",true);
-        $("#run-str-fnt").attr("class","fas fa-fighter-jet mt-0")
-  
-        $("#editStrategy").attr("disabled",true);
-        $("#edt-str-fnt").attr("class","fas fa-pencil-alt mt-0")
-  
-        $("#deleteStrategy").attr("disabled",true);
-        $("#dlt-str-fnt").attr("class","far fa-trash-alt mt-0")
-        return;   // Goes back to main
-    };  
-
-      // enables buttons, makes them bigger
-      $("#runStrategy").attr("disabled",false);
-      $("#run-str-fnt").attr("class","fas fa-2x fa-fighter-jet mt-0")
-
-      $("#editStrategy").attr("disabled",false);
-      $("#edt-str-fnt").attr("class","fas fa-2x fa-pencil-alt mt-0")
-
-      $("#deleteStrategy").attr("disabled",false);
-      $("#dlt-str-fnt").attr("class","far fa-2x fa-trash-alt mt-0")
-
-      // saves name of selected strategy to local storage
-      localStorage.setItem("selectedStrategy",slected[0].cells[1].textContent);
-    };
-
-
-//***************************************************************************************/
-//  The following function calls the code so that the selected strategy can be edited
-//***************************************************************************************/
-
-function editStrategy() {
-    // finding the strategy that was checked
-    var index = $("#TradingStrategiesList").find(".selected").data(all_strategies).data(index)
-    localStorage.setItem("edit-strategy", JSON.stringify(index));
-
-    window.location = "trading-main-edit.html";
-
 };
+
 
 //*******************************************************************************/
 // Main functionality.  The following code will be run automatically 
@@ -95,7 +47,6 @@ $.get("/api/salesByHour",{}).
         let sales_hour=all_data[0];                         // Sequelize returns 2 identical sets, only choosing the first one
         let current_hour=Number(moment().format('HH'));     // Current hour
 
-        console.log(sales_hour);
         //***********************************************************************/
         // Calculating actual sales for the day, and future sale for the day    */
         //***********************************************************************/
@@ -119,8 +70,7 @@ $.get("/api/salesByHour",{}).
         // Now, it will get total data/forecast for the full day    */
         //***********************************************************/
         for(let i=0;i<sales_stats.length;i++){
-
-            let newRow = $("<tr>").attr("id", sales_stats[i].hourN).attr("data-index", i);   // header.  ID=name for identification later on
+            let newRow = $("<tr>").attr("class", "rowHour").attr("data-index", i);   // header.  ID=name for identification later on
             let newchkbox=$("<td>");                                                         // empty, please leave it for the checkbox
             let newHour=$("<td>").text(sales_stats[i].hour);                                 // Hour
 
@@ -132,20 +82,19 @@ $.get("/api/salesByHour",{}).
             let newType=$("<td>").text("Actual");
 
             let hrIndex=sales_hour.findIndex(x => x.hour === sales_stats[i].hourN);
-            console.log(sales_stats[i].hourN,hrIndex);
             if (hrIndex!==-1){
                 newOrders=$("<td>").text(sales_hour[hrIndex].nOrders);
-                newSales=$("<td>").text(sales_hour[hrIndex].hSales);
+                newSales=$("<td>").text("$"+numberWithCommas(sales_hour[hrIndex].hSales));
             };
 
             //******************************************************************************/
             // Checks if this iteration is an actual sales, or it is a forecasting value   */
             // If the hour is higher than current, then forecasting starts                 */
             //******************************************************************************/
-            if(sales_stats[i].hourN>current_hour){
+            if(sales_stats[i].hourN>(current_hour)){
                 let hrSalesFcst=total_day_sales*sales_stats[i].hSales;
-                newSales=$("<td>").text(hrSalesFcst);
-                let newType=$("<td>").text("Forecast");
+                newSales=$("<td>").text("$"+numberWithCommas(hrSalesFcst.toFixed(0)));
+                newType=$("<td>").text("Forecast");
             }
 
             newRow.append(newchkbox);
@@ -153,14 +102,20 @@ $.get("/api/salesByHour",{}).
             newRow.append(newOrders);
             newRow.append(newSales);
             newRow.append(newType);
-            $("#table-list").append(newRow);
+            $("#tableList").append(newRow);
         }
-    
+
+        //***************************************/
+        // Following, we will initialize table  */
+        //***************************************/
+        $(document).ready(function() {
+            $('#dataTableList').DataTable({"paging": false});
+        } );
     }).
         catch(error=>{
             console.log(error);
         });
 
 // Assigning click events to all buttons
-$("#editStrategy").on("click", editStrategy);
-$(document).on("click",".select-checkbox",checkbox_clicked);
+// $("#editStrategy").on("click", editStrategy);
+// $(document).on("click",".select-checkbox",checkbox_clicked);
