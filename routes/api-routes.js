@@ -66,12 +66,18 @@ app.post("/api/createOrderDetail", (req, res) =>{
 //*******************************************************/
 app.post("/api/occupyTable",(req,res)=>{
   let sql=`UPDATE tables SET occupied=true WHERE id=${req.body.id}`
-          'FROM tables ' +
-          'ORDER BY id ASC ;'
-
-  db.sequelize.query(sql).then(tables => {
-    res.status(200).json(tables);});
+  db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
+
+
+//*******************************************************/
+//  The following route changes the status of an order  */
+//*******************************************************/
+app.post("/api/changeOrderStatus",(req,res)=>{
+  let sql=`UPDATE orders SET status_id=${req.body.status_id} WHERE id=${req.body.id}`
+  db.sequelize.query(sql).then(orderStatus => {res.status(200).json({});});
+});
+
 
 //*******************************************************************************/
 //  The following route returns information about all of the tables, and their  */
@@ -85,6 +91,38 @@ app.get("/api/allTablesInfo",(req,res)=>{
             'LEFT JOIN `order_statuses` ON order_statuses.id=orders.status_id';
 
     db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
+});
+
+
+//****************************************************************************/
+//  The following route returns information about an order ID passed         */
+//  plus all of its details                                                  */
+//****************************************************************************/
+app.post("/api/orderDetails",(req,res)=>{
+  console.log(req.body);
+  let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill, '+
+          'TIME(o.createdAt) as ordered,m.id as meal_id, m.name as meal,d.quantity,d.total as item_total '+
+          'FROM orders o '+
+          'LEFT JOIN tables t on t.id=o.table_id '+
+          'LEFT JOIN order_statuses s on s.id=o.status_id '+
+          'LEFT JOIN order_details d on d.order_id=o.id '+
+          'LEFT JOIN meals m on m.id=d.meal_id '+
+          `WHERE o.id=${req.body.id};`
+  db.sequelize.query(sql).then(orderDetails => {res.status(200).json(orderDetails);});
+});
+
+//*******************************************************************************/
+//  The following route returns information about all of the orders that        */
+//  need to be prepared by the kitchen                                          */
+//*******************************************************************************/
+app.get("/api/kitchenOrders",(req,res)=>{
+    let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill,TIME(o.createdAt) as ordered '+
+            'FROM orders o '+
+            'LEFT JOIN tables t on t.id=o.table_id '+
+            'LEFT JOIN order_statuses s on s.id=o.status_id '+
+            'WHERE o.status_id<3 '+
+            'ORDER BY o.createdAt ASC;'
+    db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
 });
 
 //********************************************************************************/
