@@ -84,7 +84,6 @@ function sendOrder(order,menu){
                 //  Then it will call the function that cleans all of the data so that another
                 //  order can be done. 
                 //****************************************************************************/
-                console.log(`calling to occypy ${table_id}`);
                 $.post("/api/occupyTable",{id: table_id})
                     .then(orderInfo=>{
                         console.log(orderInfo);
