@@ -177,12 +177,13 @@
                 </div>
                 <div class="col-md-2"></div>  <!-- for formatting purposes only -->
                 <div class="col-md-3 text-center align-items-center">
-                    <div class="input-group mb-3">  <!-- Diner's guest -->
-                        <div class="input-group-prepend">
-                                <span class="input-group-text" id="strat-desc-text">Table number</span>
+                    <form>
+                        <div class="form-group">
+                        <label for="sel1">Select list (select one):</label>
+                        <select class="form-control" id="tableSelect">
+                        </select>
                         </div>
-                        <input id="table-number" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="table-number-text">
-                    </div>
+                    </form>
                 </div>  <!--second column ends here-->
                 <div class="col-md-2"></div>  <!-- for formatting purposes only -->
             </div>  <!-- second row ends here-->
@@ -220,7 +221,7 @@
                 <div class="col-md-12 text-center border my-5">
                     <!--first button-->
                     <div class="event_btn_inner" id="submitOrder">
-                        <a class="event_btnm">Close an Order</a>
+                        <a class="event_btnm">Place Order</a>
                     </div>
                 </div>
             </div>
@@ -333,15 +334,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="vendors/isotope/isotope.pkgd.min.js"></script>
         <script src="vendors/countdown/jquery.countdown.js"></script>
         <script src="vendors/js-calender/zabuto_calendar.min.js"></script>
-        <!-- JQuery confirm -->
-    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         <!-- Valentino's theme-->
         <script src="js/theme.js"></script>
         <!--Required for login / Passport-->
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <!--Required for dataTables-->
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <!-- JQuery confirm -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+        <!--Required for our program-->
+        <script type="text/javascript" src="js/usrAlert.js"></script>
         <script type="text/javascript" src="js/host-neworder.js"></script>
 
     </body>
