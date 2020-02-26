@@ -61,6 +61,18 @@ app.post("/api/createOrderDetail", (req, res) =>{
   })
 });
 
+//*******************************************************/
+//  The following route updates a table ID to occupied  */
+//*******************************************************/
+app.post("/api/occupyTable",(req,res)=>{
+  let sql=`UPDATE tables SET occupied=true WHERE id=${req.body.id}`
+          'FROM tables ' +
+          'ORDER BY id ASC ;'
+
+  db.sequelize.query(sql).then(tables => {
+    res.status(200).json(tables);});
+});
+
 //*******************************************************************************/
 //  The following route returns information about all of the tables, and their  */
 //  associated order(if available).                                             */
@@ -89,6 +101,20 @@ app.get("/api/salesByHour",(req,res)=>{
   db.sequelize.query(sql).then(sales => {
     res.status(200).json(sales);});
 });
+
+//*****************************************************************************/
+//  The following route returns all tables that are available (not occupied)  */
+//*****************************************************************************/
+app.get("/api/tablesAvailable",(req,res)=>{
+  let sql='SELECT name, id ' +
+          'FROM tables ' +
+          'WHERE occupied=false '+
+          'ORDER BY id ASC ;'
+
+  db.sequelize.query(sql).then(tables => {
+    res.status(200).json(tables);});
+});
+
 
 //*******************************************************************************/
 //  The following route returns the full menu, marked by the manager as active  */
