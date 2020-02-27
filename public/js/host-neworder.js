@@ -84,7 +84,7 @@ function sendOrder(order,menu){
                 //  Then it will call the function that cleans all of the data so that another
                 //  order can be done. 
                 //****************************************************************************/
-                $.post("/api/occupyTable",{id: table_id})
+                $.post("/api/occupyTable",{id: table_id,occupied:true})
                     .then(orderInfo=>{
                         console.log(orderInfo);
                         usrAlert("Success!!!!","Order Created","Let's eat!!!",2,true);   // Message.  2 means success

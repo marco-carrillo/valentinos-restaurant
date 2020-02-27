@@ -134,9 +134,9 @@
         <section class="banner_area">
             <div class="container">
                 <div class="banner_content">
-                    <h4>Kitchen Portal</h4>
-                    <a>Check Incomming Orders</a>
-                    <a class="active" href="hostdashboard.html">HOST dashboard</a>
+                    <h4>Order Status</h4>
+                    <a>Check orders ready to serve</a>
+                    <a class="active" href="hostdashboard.html">HOST Orders ready to serve</a>
                     <a class="active" href="table.html">Home</a>
                 </div>
             </div>
@@ -148,37 +148,26 @@
         <!--================START YOUR CODE HERE=================-->
         <section class="booking_table_area booking_area_white">
 
-            <!--************************************************** -->
-            <!-- First row contains information about the order    -->
-            <!--************************************************** -->
-
-            <div class="container">
-                <div class="row my-5"> 
-                    <div class="col-md-12 text-center border my-5">
-                        <div class="event_btn_inner">
-                            <a id="orderInformation" class="orderHdr" href="#">Order Information</a>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-
+            <!--************************************************ -->
+            <!-- Second row contains information about diners    -->
+            <!--************************************************ -->
             <!--******************************** -->
             <!-- Third row contains dataTable    -->
             <!--******************************** -->
 
-
             <div class="row">
-                <!--First column, general information about the order-->
-                <div class="col-md-3"></div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-2"></div>  <!--for formatting purposes only-->
+                <div class="col-md-8">
                     <table id="orderList" class="display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Item #</th>
-                                <th>Item description</th>
-                                <th>Item status</th>
-                                <th>Quantity</th>
-                                <th>Total cost</th>
+                                <th></th>
+                                <th>Order #</th>
+                                <th>Name</th>
+                                <th>Table</th>
+                                <th>Status</th>
+                                <th>Total Bill</th>
+                                <th>Time ordered</th>
                             </tr>
                         </thead>
                         <tbody id="menuList">
@@ -186,35 +175,21 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-2"></div>  <!--for formatting purposes only-->
             </div>  <!--end of row-->
 
             <!--******************************************** -->
             <!-- Forth row contains button to submit data    -->
             <!--******************************************** -->
             <div class="row my-5">
-                <div class="col-md-2 text-center border my-5"></div>
-                <div class="col-md-2 text-center border my-5">
-                    <div class="event_btn_inner" id="orderDetails1">
-                        <a class="event_btnm" onmouseover="" id="toCook" style="cursor: pointer;">Start cooking</a>
+                <!--First row with three columns + formating-->
+                <div class="col-md-12 text-center border my-5">
+                    <!--first button-->
+                    <div class="event_btn_inner" id="orderDetails">
+                        <a class="event_btnm" id="serveOrder" onmouseover="" style="cursor: pointer;">Serve Order</a>
+                        <a class="event_btnm" href="host-dashboard.html" onmouseover="" style="cursor: pointer;">Go back</a>
                     </div>
                 </div>
-                <div class="col-md-2 text-center border my-5">
-                    <div class="event_btn_inner" id="orderDetails2">
-                        <a class="event_btnm" onmouseover="" id="toServe" style="cursor: pointer;">Ready to serve</a>
-                    </div>
-                </div>
-                <div class="col-md-2 text-center border my-5">
-                    <div class="event_btn_inner" id="orderDetails3">
-                        <a class="event_btnm" onmouseover="" id="toTrash" style="cursor: pointer;">Cancel order</a>
-                    </div>
-                </div>
-                <div class="col-md-2 text-center border my-5">
-                    <div class="event_btn_inner" id="orderDetails4">
-                        <a class="event_btnm" href="chef-dashboard.html" onmouseover="" id="toBack" style="cursor: pointer;">Go back</a>
-                    </div>
-                </div>
-                <div class="col-md-2 text-center border my-5"></div>
             </div>
 
 
@@ -338,7 +313,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         <!--Required for our program-->
         <script type="text/javascript" src="js/usrAlert.js"></script>
-        <script type="text/javascript" src="js/chef-actions.js"></script>
+        <script type="text/javascript" src="js/host-closeorder.js"></script>
 
     </body>
 </html>

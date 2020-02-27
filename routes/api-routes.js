@@ -65,7 +65,7 @@ app.post("/api/createOrderDetail", (req, res) =>{
 //  The following route updates a table ID to occupied  */
 //*******************************************************/
 app.post("/api/occupyTable",(req,res)=>{
-  let sql=`UPDATE tables SET occupied=true WHERE id=${req.body.id}`
+  let sql=`UPDATE tables SET occupied=${req.body.occupied} WHERE id=${req.body.id}`
   db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
 
@@ -123,6 +123,34 @@ app.get("/api/kitchenOrders",(req,res)=>{
             'WHERE o.status_id<3 '+
             'ORDER BY o.createdAt ASC;'
     db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
+});
+
+//*******************************************************************************/
+//  The following route returns information about all of the orders that        */
+//  need to be prepared by the kitchen                                          */
+//*******************************************************************************/
+app.get("/api/readyOrders",(req,res)=>{
+  let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill,TIME(o.createdAt) as ordered '+
+          'FROM orders o '+
+          'LEFT JOIN tables t on t.id=o.table_id '+
+          'LEFT JOIN order_statuses s on s.id=o.status_id '+
+          'WHERE o.status_id=3 '+
+          'ORDER BY o.createdAt ASC;'
+  db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
+});
+
+//*******************************************************************************/
+//  The following route returns information about all of the orders that        */
+//  need to be prepared by the kitchen                                          */
+//*******************************************************************************/
+app.get("/api/servedOrders",(req,res)=>{
+  let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill,TIME(o.createdAt) as ordered '+
+          'FROM orders o '+
+          'LEFT JOIN tables t on t.id=o.table_id '+
+          'LEFT JOIN order_statuses s on s.id=o.status_id '+
+          'WHERE o.status_id=4 '+
+          'ORDER BY o.createdAt ASC;'
+  db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
 });
 
 //********************************************************************************/
