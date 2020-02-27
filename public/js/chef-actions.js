@@ -60,11 +60,13 @@ $.post("/api/orderDetails",{id: order_id}).
             let newRow   =$("<tr>").attr("data-index", i);                    // header.  ID=name for identification later on
             let newMId   =$("<td>").text(order[i].meal_id);                  // Item #
             let newMName =$("<td>").text(order[i].meal);                     // Item name
+            let newStatus=$("<td>").text(order[i].status);                   // status
             let newQty   =$("<td>").text(order[i].quantity);                 // Quantity
-            let newCost  =$("<td>").text(order[i].item_total);               // Item total
+            let newCost  =$("<td>").text("$"+order[i].item_total);           // Item total
 
             newRow.append(newMId);
             newRow.append(newMName);
+            newRow.append(newStatus);
             newRow.append(newQty);
             newRow.append(newCost);
             $("#orderList").append(newRow);
@@ -80,7 +82,6 @@ $.post("/api/orderDetails",{id: order_id}).
         //***********************************************/
         // Assigning click events to the submit button  */
         //***********************************************/
-        console.log('assigning clicks');
         $("#toCook").click(sendToCook);
         $("#toServe").click(sendToServe);
         $("#toTrash").click(sendToTrash);

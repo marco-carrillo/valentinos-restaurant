@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="img/express-favicon.png" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>RedCaynne Re</title>
+        <title>Valentino's</title>
 
         <!-- Icon css link -->
         <link href="vendors/material-icon/css/materialdesignicons.min.css" rel="stylesheet">
@@ -135,8 +135,8 @@
             <div class="container">
                 <div class="banner_content">
                     <h4>Order Status</h4>
-                    <a>My Order Status today</a>
-                    <a class="active" href="hostdashboard.html">HOST dashboard</a>
+                    <a>Check orders ready to serve</a>
+                    <a class="active" href="hostdashboard.html">HOST Orders ready to serve</a>
                     <a class="active" href="table.html">Home</a>
                 </div>
             </div>
@@ -148,37 +148,49 @@
         <!--================START YOUR CODE HERE=================-->
         <section class="booking_table_area booking_area_white">
 
-            <div style="width: 80%; margin:auto">
-                <table class="table">
-    
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Table</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Order №</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Massage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>@mdo</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <!--************************************************ -->
+            <!-- Second row contains information about diners    -->
+            <!--************************************************ -->
+            <!--******************************** -->
+            <!-- Third row contains dataTable    -->
+            <!--******************************** -->
 
+            <div class="row">
+                <div class="col-md-2"></div>  <!--for formatting purposes only-->
+                <div class="col-md-8">
+                    <table id="orderList" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Order #</th>
+                                <th>Name</th>
+                                <th>Table</th>
+                                <th>Status</th>
+                                <th>Total Bill</th>
+                                <th>Time ordered</th>
+                            </tr>
+                        </thead>
+                        <tbody id="menuList">
+                            <!-- Empty, will add menu lists here-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>  <!--for formatting purposes only-->
+            </div>  <!--end of row-->
+
+            <!--******************************************** -->
+            <!-- Forth row contains button to submit data    -->
+            <!--******************************************** -->
+            <div class="row my-5">
+                <!--First row with three columns + formating-->
+                <div class="col-md-12 text-center border my-5">
+                    <!--first button-->
+                    <div class="event_btn_inner" id="orderDetails">
+                        <a class="event_btnm" id="serveOrder" onmouseover="" style="cursor: pointer;">Close Order</a>
+                        <a class="event_btnm" href="host-dashboard.html" onmouseover="" style="cursor: pointer;">Go back</a>
+                    </div>
+                </div>
+            </div>
 
 
         </section>
@@ -192,7 +204,7 @@
                         <div class="col-md-3">
                             <aside class="f_widget about_widget">
                                 <div class="f_w_title">
-                                    <h4>ABOUT RedCayenne</h4>
+                                    <h4>ABOUT Valentino's</h4>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ut.</p>
                                 <ul>
@@ -285,14 +297,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="vendors/isotope/isotope.pkgd.min.js"></script>
         <script src="vendors/countdown/jquery.countdown.js"></script>
         <script src="vendors/js-calender/zabuto_calendar.min.js"></script>
-        <!-- JQuery confirm -->
-    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+        <!--Moment-->
+        <script src="js/moment.js"></script>
         <!-- Valentino's theme-->
         <script src="js/theme.js"></script>
         <!--Required for login / Passport-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/login.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <!--Required for dataTables-->
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+        <!-- JQuery confirm -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+        <!--Required for our program-->
+        <script type="text/javascript" src="js/usrAlert.js"></script>
+        <script type="text/javascript" src="js/host-serveorder.js"></script>
 
     </body>
 </html>
