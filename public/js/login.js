@@ -37,6 +37,7 @@ $(document).ready(function() {
     })
       .then(function() {
         window.location.replace("/members");
+
         // If there's an error, log the error
       })
       .catch(function(err) {
@@ -44,15 +45,7 @@ $(document).ready(function() {
       //*******************************************************************************/
       // The following function provides a message that the user is not  authorized   */
       //*******************************************************************************/
-        $.confirm({
-          title: 'Invalid credentials',
-          content: 'Please try again.  Or see your manager for assistance',
-          type: 'red',   
-          buttons: {
-                      delete: {text: 'Understand', btnClass: 'btn-red',
-                      action: function(){}  }
-                    }
-        });  // Jquery confirm
+      usrAlert('Invalid credentials','Please try again, or see your manager for assistance','Got it!!!',1,false);
       });    // catch
   }          // function
 });          // Document ready
