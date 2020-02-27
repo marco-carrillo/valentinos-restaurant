@@ -17,9 +17,6 @@ $(document).ready(function() {
       salary: 0
     };
 
-    console.log(userData);
-
-
     if (!userData.email || !userData.password) {
       return;
     }
@@ -41,8 +38,6 @@ $(document).ready(function() {
     })
       .then(function(data) {
           // window.location.replace("/members");
-          console.log(data);
-          alert(alert);
           $.confirm({
             title: 'Success!!!!',
             content: 'Valentino partner created successfully',
@@ -57,8 +52,6 @@ $(document).ready(function() {
   };           // function
 
   function handleLoginErr(err) {
-    // $("#alert .msg").text(err.responseJSON);
-    // $("#alert").fadeIn(500);
     $.confirm({
       title: 'Invalid credentials',
       content: err.responseJSON,
