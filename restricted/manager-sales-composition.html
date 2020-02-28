@@ -149,10 +149,11 @@
             <div class="container">
                 <div class="s_black_title">
                     <br><br><br>
-                    <h3>Create the perfect dinning experience</h3>
-                    <h2>Manager's dashboard</h2>
-                    <p>Nothing more fulfilling that being part of a unique journey</p>
+                    <!-- <h3>Daily sales composition</h3> -->
+                    <h2 id="salesHdr">Manager's Sales analysis</h2>
+                    <!-- <p>Nothing more fulfilling that being part of a unique journey</p> -->
             </div>
+
 
             <!--****************************************************************-->
             <!-- This section contains three rows with three buttons on each one-->
@@ -161,43 +162,27 @@
 
             <div class="container border">
 
-                <div class="row">  <!--First row with three columns + formating-->
-                    <div class="col-md-12 text-center border">  <!--first button-->
-                        <div class="event_btn_inner">
-                            <a class="event_btnm" href="manager-new-user.html" target="_blank"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add a user</a>
-                            <a class="event_btnm" href="#"><i class="fa fa-key" aria-hidden="true"></i>Passwords</a>
-                            <a class="event_btnm" href="#"><i class="fa fa-trash" aria-hidden="true"></i>Delete user</a>
-                        </div>
+                <div class="row text-center">  <!--First row with three columns + formating-->
+                    <div class="col-md-12 text-center align-items-center">  <!--column  for graph-->
+                        <div id="salesPieChart" class="align-items-center"></div>                   <!--Container for graph-->
                     </div>
                 </div> 
 
-                <div class="row">
-                    <div class="col-md-12"></div>
+                <!--********************************************-->
+                <!-- Provides the overal daily results for sales-->
+                <!--********************************************-->
+                <div class="container">
+                    <div class="row"> 
+                        <div class="col-md-12 text-center border">
+                            <div class="event_btn_inner">
+                                <br><br><br>
+                                <a id="salesMsg" class="btn_msg" href="#">Total sales today $</a>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
 
-                <div class="row">  <!--First row with three columns + formating-->
-                    <div class="col-md-12  text-center border my-5">  <!--first button-->
-                        <div class="event_btn_inner">
-                            <a class="event_btnm" href="manager-menu_add.html"target="_blank"><i class="fa fa-cutlery" aria-hidden="true"></i>Menu-add</a>
-                            <a class="event_btnm" href="#"><i class="fa fa-cutlery" aria-hidden="true"></i>Menu-edit</a>
-                            <a class="event_btnm" href="#"><i class="fa fa-cutlery" aria-hidden="true"></i>Menu-delete</a>
-                        </div>
-                </div> 
-
-                <div class="row">
-                    <div class="col-md-12"></div>
-                </div>
-
-                <div class="row">  <!--First row with three columns + formating-->
-                    <div class="col-md-12  text-center border my-5">  <!--first button-->
-                        <div class="event_btn_inner">
-                            <a class="event_btnm" href="manager-tables.html" target="_blank"><i class="fa fa-coffee" aria-hidden="true"></i>Tables</a>
-                            <a class="event_btnm" href="manager-profitability.html" target="_blank"><i class="fa fa-line-chart" aria-hidden="true"></i>Sales Forecast</a>
-                            <a class="event_btnm" href="manager-sales-composition.html" target="_blank"><i class="fa fa-pie-chart" aria-hidden="true"></i>Sales today</a>
-                        </div>
-                </div> 
- 
-            </div>  <!--end of container for buttons-->
+            </div>  <!--end of container for charts-->
 
         </section>
         <!--================END YOUR CODE HERE =================-->
@@ -310,6 +295,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="js/theme.js"></script>
         <!--Required for login / Passport-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+        <!--Next two lines required for ZoomChart-->
+        <script src="https://cdn.zoomcharts-cloud.com/1/latest/zoomcharts.js" type="text/javascript"></script>
+        <script type="text/javascript"> var ZoomChartsLicense = "ZCS-9i43cp1p2: ZoomCharts SDK 30 day Free Trial License for MFK..@..L.COM (valid for testing only); upgrades until: 2020-03-29"; var ZoomChartsLicenseKey = "a6c67c81c64101323bcd826dcd22d4547e3a31e6a57d87aa3c"+ "9bd0a81e7d10e9bcf4b1325aa57c452a0c608dcc55eea91f10e565b36798d5d46c3d28ef5ebc6"+ "736a064bb5526cc3bdd4a96bac9ffd022e47003c5b3bdce1d38b379de115fda1c08e4f8ac8c6b"+ "9ae3be2591f16807c6c2154550c31a6eec89904f4afdbab752d9c0a4d2df7a83f323ed4e234d3"+ "97a677128083e000a89df821b73a0db5cbedb1d2fca17cdfb4b018e1bc37ea1e2200cfa1c1220"+ "7d89e1321d2563d60e7df034d5245958f0d03e5a83534e260007662a2e844dfa723ac6ef6c6b9"+ "235b4f0e479b7e8f6ce54013b9d4176d3dbef3088570fd229e843e17c8016a2406d928c0c44f6"; </script>
+        <!--Next line is the code that retrieves data and populates the table-->
+        <script src="js/manager-sales-composition.js" type="text/javascript"></script>
     </body>
 </html>

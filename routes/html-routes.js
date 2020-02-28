@@ -77,6 +77,14 @@ module.exports = function(app) {
   app.get("/js/manager-menu_add.js", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/js/manager-menu_add.js"));
   });
+  //-------------------------------------------------------------------------------
+  app.get("/manager-sales-composition.html", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/manager-sales-composition.html"));
+  });
+  //-------------------------------------------------------------------------------
+  app.get("/js/manager-sales-composition.js", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/js/manager-sales-composition.js"));
+  });
   //***************************************************/
   // the following are restricted routes for the host
   //***************************************************/

@@ -113,6 +113,22 @@ app.post("/api/orderDetails",(req,res)=>{
   db.sequelize.query(sql).then(orderDetails => {res.status(200).json(orderDetails);});
 });
 
+//*****************************************************************************/
+//  The following route returns today's sales consolidated by type of food    */
+//  (main course, wines, coffee, water, etc.) and by meal (steak, etc.)       */
+//*****************************************************************************/
+app.get("/api/salesToday",(req,res)=>{
+
+  let sql='SELECT mt.id as category_id,mt.name as category,m.id as meal_id,m.name as meal,SUM(total) as meals_total '+
+          'FROM Order_details od '+
+          'LEFT JOIN Meals m on m.id=od.meal_id '+
+          'LEFT JOIN Meal_types mt on mt.id=m.meal_type_id '+
+          'WHERE DATE(od.createdAt)=CURDATE() '+
+          'GROUP BY category_id,category,meal_id,meal '+
+          'ORDER BY category_id,category,meal_id,meal;'
+  db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
+});
+
 //*******************************************************************************/
 //  The following route returns information about all of the orders that        */
 //  need to be prepared by the kitchen                                          */
