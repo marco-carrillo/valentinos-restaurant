@@ -148,36 +148,6 @@
         <!--================START YOUR CODE HERE=================-->
         <section class="booking_table_area booking_area_white">
 
-            <!--************************************************ -->
-            <!-- Second row contains information about diners    -->
-            <!--************************************************ -->
-            <!--******************************** -->
-            <!-- Third row contains dataTable    -->
-            <!--******************************** -->
-
-            <div class="row">
-                <div class="col-md-2"></div>  <!--for formatting purposes only-->
-                <div class="col-md-8">
-                    <table id="orderList" class="display" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Order #</th>
-                                <th>Name</th>
-                                <th>Table</th>
-                                <th>Status</th>
-                                <th>Total Bill</th>
-                                <th>Time ordered</th>
-                            </tr>
-                        </thead>
-                        <tbody id="menuList">
-                            <!-- Empty, will add menu lists here-->
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-2"></div>  <!--for formatting purposes only-->
-            </div>  <!--end of row-->
-
             <!--******************************************** -->
             <!-- Forth row contains button to submit data    -->
             <!--******************************************** -->
@@ -186,7 +156,10 @@
                 <div class="col-md-12 text-center border my-5">
                     <!--first button-->
                     <div class="event_btn_inner" id="orderDetails">
-                        <a class="event_btnm" onmouseover="" style="cursor: pointer;">See Order Details</a>
+                        <a class="event_btnm" onmouseover="" href="manager-dashboard.html" style="cursor: pointer;">Manager Menu</a>
+                        <a class="event_btnm" onmouseover="" href="host-dashboard.html" style="cursor: pointer;">Host menu</a>
+                        <a class="event_btnm" onmouseover="" href="chef-dashboard.html" style="cursor: pointer;">Chef menu</a>
+                        <a class="event_btnm" onmouseover="" href="/logout" style="cursor: pointer;">Logout</a>
                     </div>
                 </div>
             </div>
@@ -312,7 +285,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         <!--Required for our program-->
         <script type="text/javascript" src="js/usrAlert.js"></script>
-        <script type="text/javascript" src="js/chef-dashboard.js"></script>
 
     </body>
 </html>

@@ -41,7 +41,7 @@ module.exports = function(app) {
   // the authentication middleware to ensure the user has been logged
   // the following are all of the manager's html routes
   //******************************************************************************/
-  app.get("/manager-dashboard", isAuthenticated, function(req, res) {
+  app.get("/manager-dashboard.html", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/manager-dashboard.html"));
   });
   //-------------------------------------------------------------------------------
@@ -67,6 +67,14 @@ module.exports = function(app) {
   //-------------------------------------------------------------------------------
   app.get("/js/manager-profitability.js", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/js/manager-profitability.js"));
+  });
+  //-------------------------------------------------------------------------------
+  app.get("/manager-menu_add.html", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/manager-menu_add.html"));
+  });
+  //-------------------------------------------------------------------------------
+  app.get("/manager-menu_add.js", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../js/restricted/manager-menu_add.js"));
   });
   //***************************************************/
   // the following are restricted routes for the host
@@ -109,11 +117,17 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../restricted/chef-actions.html"));
   });
   //-------------------------------------------------------------------------------
-  app.get("/chef-dashboard.js", isAuthenticated, function(req, res) {
+  app.get("/js/chef-dashboard.js", isAuthenticated, function(req, res) {
+    console.log(path.join(__dirname, "../restricted/js/chef-dashboard.js"));
+    
     res.sendFile(path.join(__dirname, "../restricted/js/chef-dashboard.js"));
   });
   //-------------------------------------------------------------------------------
   app.get("/chef-actions.js", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../js/restricted/chef-actions.js"));
+    res.sendFile(path.join(__dirname, "../restricted/js/chef-actions.js"));
+  });
+  //-------------------------------------------------------------------------------
+  app.get("/valentino-family.html", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/valentino-family.html"));
   });
 };

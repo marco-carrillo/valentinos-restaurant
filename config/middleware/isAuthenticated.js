@@ -2,12 +2,11 @@
 module.exports = function(req, res, next) {
   // If the user is logged in, continue with the request to the restricted route
 
-  console.log(`environmental route is:`,req.user)
   if (req.user) {
     return next();
+    // return res.redirect("valentino-family.html");
   }
 
   // If the user isn't logged in, redirect them to the login page
-  return next();
-  return res.redirect("/");
+  return res.redirect("/api/login");
 };

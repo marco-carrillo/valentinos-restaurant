@@ -37,7 +37,7 @@ $(document).ready(function() {
       password: password
     })
       .then(function() {
-        window.location.replace("/valentino-members");
+        window.location.replace("/valentino-family.html");
 
         // If there's an error, log the error
       })
