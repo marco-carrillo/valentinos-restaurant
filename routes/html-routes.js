@@ -42,7 +42,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../restricted/manager-dashboard.html"));
   });
   //-------------------------------------------------------------------------------
-  app.get("/manager-new-user", isAuthenticated, function(req, res) {
+  app.get("/manager-new-user.html", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/manager-new-user.html"));
   });
   //-------------------------------------------------------------------------------
@@ -50,11 +50,11 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../restricted/js/create-user.js"));
   });
   //-------------------------------------------------------------------------------
-  app.get("/manager-profitability", isAuthenticated, function(req, res) {
+  app.get("/manager-profitability.html", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/manager-profitability.html"));
   });
   //-------------------------------------------------------------------------------
-  app.get("/manager-tables", isAuthenticated, function(req, res) {
+  app.get("/manager-tables.html", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/manager-tables.html"));
   });
   //-------------------------------------------------------------------------------
