@@ -201,6 +201,20 @@ app.get("/api/menu",(req,res)=>{
     res.status(200).json(menu);});
 });
 
+app.post("/api/createmeal", function(req, res){
+
+  console.log(req.body);
+
+  db.Meal.create(req.body).then (function(dbMeal){
+    res.status(200).json({});
+
+    }).catch(function(error){
+      console.log(error);
+      console.log('going through the catch route');
+      res.status(401).json(error);
+      });
+  });
+
 //***************************************/
 //  The following route logs users out  */
 //  associated order(if available).     */
