@@ -10,7 +10,6 @@ function numberWithCommas(x) {
 //***************************************************************************/
 function get_table_info(){
 
-    console.log('getting into function get_table_info')
     // ****************************************************************************************************/
     //  Getting a list of all of the tables, their statuses (occupied, available),                        */
     //  Who is the customer at the table, and how much is the total bill for the table                    */
@@ -18,8 +17,6 @@ function get_table_info(){
     //*****************************************************************************************************/
     $.get("api/allTablesInfo",{})
        .then(function(raw_data){
-           console.log('got info from api/alltablesinfo');
-
            let tables=raw_data[0];
            console.log(tables);
            for(let i=0;i<tables.length;i++){
@@ -65,5 +62,5 @@ function get_table_info(){
 // Main functionality.  Calls getting table information for now, and formats tables in the html file
 // accordingly.  As more functionality post-MVP is added, this section will grow.
 //*****************************************************************************************************/
-console.log('I am executing manager-tables.js')
+
 get_table_info();
