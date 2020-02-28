@@ -50,7 +50,7 @@ $.post("/api/orderDetails",{id: order_id}).
         //**********************************************/
         //  Will write header to message for kitchen   */
         //**********************************************/
-        $("#orderInformation").html(`<p>Order #: ${order[0].id}</p><p>Guest :  ${order[0].customer_name} </p>Table : ${order[0].tables}<br>Total bill ${order[0].total_bill}<br>Ordered at ${order[0].ordered}`);
+        $("#orderInformation").html(`<p>Order #: ${order[0].id}</p><p>Guest :  ${order[0].customer_name} </p>Table : ${order[0].tables}<br>Total bill $${order[0].total_bill}<br>Ordered at ${order[0].ordered}`);
         console.log(order);
 
         //*************************************************/
