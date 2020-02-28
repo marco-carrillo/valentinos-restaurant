@@ -22,6 +22,7 @@ $(document).ready(function() {
     if (!userData.email || !userData.password) {
       return;
     }
+    console.log('validated email and pwd not empty');
 
     // If we have an email and password we run the loginUser function and clear the form
     loginUser(userData.email, userData.password);
@@ -36,7 +37,7 @@ $(document).ready(function() {
       password: password
     })
       .then(function() {
-        window.location.replace("/members");
+        window.location.replace("/valentino-members");
 
         // If there's an error, log the error
       })
