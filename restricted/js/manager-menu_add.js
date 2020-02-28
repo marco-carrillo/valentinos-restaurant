@@ -1,8 +1,4 @@
 $(document).ready(function() {
-    // Getting references to our form and input
-    // let signUpForm = $("form.signup");
-    // let emailInput = $("input#email-input");
-    // let passwordInput = $("input#password-input");
     let nameInput = $("#name");
     let timeInput = $("#time_prepare");
     let costInput = $("#cost");
@@ -12,10 +8,8 @@ $(document).ready(function() {
 
 
     let menuForm = $("#menu");
-    let mealSelect = $("#meal_type");
+    // let mealSelect = $("#meal_type");
   
-  
-    // When the signup button is clicked, we validate the email and password are not blank
     menuForm.on("submit", function(event) {
       event.preventDefault();
   
@@ -34,9 +28,13 @@ $(document).ready(function() {
         return;
       }
       // If we have an email and password, run the signUpUser function
-      addMeal(mealData.name, mealData.time_to_prepare,mealData.meal_cost,mealData.meal_price,mealData.meal_incentive,mealData.active,mealData.meal_type_id);
-    //   emailInput.val("");
-    //   passwordInput.val("");
+      addMeal(mealData.name, 
+              parseInt(mealData.time_to_prepare),
+              parseInt(mealData.meal_cost),
+              parseInt(mealData.meal_price),
+              parseInt(mealData.meal_incentive),
+              true,
+              parseInt(mealData.meal_type_id));
     });
   
     // Does a post to the signup route. If successful, we are redirected to the members page
@@ -46,11 +44,11 @@ $(document).ready(function() {
       $.post("/api/createmeal", {
         name: name,
         time_to_prepare: time_to_prepare,
-        meal_cost: meal_cost,
-        meal_price: meal_price,
-        meal_incentive: meal_incentive,
+        cost: meal_cost,
+        price: meal_price,
+        incentive: meal_incentive,
         active: active,
-        meal_type_id: meal_type_id,
+        meal_type_id: meal_type_id
 
       })
         .then(function(data) {

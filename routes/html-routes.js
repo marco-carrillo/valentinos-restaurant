@@ -73,8 +73,8 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../restricted/manager-menu_add.html"));
   });
   //-------------------------------------------------------------------------------
-  app.get("/manager-menu_add.js", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../js/restricted/manager-menu_add.js"));
+  app.get("/js/manager-menu_add.js", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/js/manager-menu_add.js"));
   });
   //***************************************************/
   // the following are restricted routes for the host

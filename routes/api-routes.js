@@ -201,10 +201,10 @@ app.get("/api/menu",(req,res)=>{
     res.status(200).json(menu);});
 });
 
+//*******************************************************/
+//  Following route creates a record on the meals table
+//*******************************************************/
 app.post("/api/createmeal", function(req, res){
-
-  console.log(req.body);
-
   db.Meal.create(req.body).then (function(dbMeal){
     res.status(200).json({});
 
