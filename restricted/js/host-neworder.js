@@ -10,6 +10,16 @@ function numberWithCommas(x) {
 //*************************************************************/
 
 function sendOrder(order,menu){
+
+    //***********************************************************/
+    //  Ensure diner's name is not empty (5 characters minimum) */
+    //***********************************************************/
+
+    if($('#diner-name').val().trim().length<5){
+        usrAlert("Diner's name is empty","With such an awesome name, why leave it empty?","you'r right!",1,false);
+        return;
+    }
+
     //************************************************************************************************/
     //  order is a big string that separates all the rows with the & sign.
     //  Then, each part will be a-qty=b, where a=row, -qty=separator, and b is the quantity ordered
