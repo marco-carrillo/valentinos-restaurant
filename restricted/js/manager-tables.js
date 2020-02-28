@@ -18,8 +18,11 @@ function get_table_info(){
     //*****************************************************************************************************/
     $.get("api/allTablesInfo",{})
        .then(function(raw_data){
+           console.log('got info from api/alltablesinfo');
+
            let tables=raw_data[0];
-            for(let i=0;i<tables.length;i++){
+           console.log(tables);
+           for(let i=0;i<tables.length;i++){
 
                 //*************************************************************************/
                 // Sets the table name, the customer name and the total bill infomation   */
