@@ -102,7 +102,6 @@ app.get("/api/allTablesInfo",(req,res)=>{
 //  plus all of its details                                                  */
 //****************************************************************************/
 app.post("/api/orderDetails",(req,res)=>{
-  console.log(req.body);
   let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill, '+
           'TIME(o.createdAt) as ordered,m.id as meal_id, m.name as meal,d.quantity,d.total as item_total '+
           'FROM orders o '+
@@ -161,14 +160,12 @@ app.get("/api/servedOrders",(req,res)=>{
 //  of sales and the total amount sold per hour.                                 */
 //********************************************************************************/
 app.get("/api/salesByHour",(req,res)=>{
-  let sql='SELECT HOUR(orders.updatedAt) AS hour,COUNT(*) AS nOrders, SUM(total_bill) AS hSales ' +
-          'FROM orders ' +
-          'LEFT JOIN order_statuses ON order_statuses.id=orders.status_id ' +
-          'GROUP BY HOUR(orders.updatedAt) ' + 
-          'ORDER BY HOUR(orders.updatedAt) ASC ;'
-
-  db.sequelize.query(sql).then(sales => {
-    res.status(200).json(sales);});
+  let sql='SELECT HOUR(o.updatedAt) AS hour,COUNT(*) AS nOrders, SUM(o.total_bill) AS hSales '+
+          'FROM Orders o '+
+          'LEFT JOIN Order_statuses os ON os.id=o.status_id '+
+          'GROUP BY HOUR(o.updatedAt) '+
+          'ORDER BY HOUR(o.updatedAt) ASC;';
+  db.sequelize.query(sql).then(sales => {res.status(200).json(sales);});
 });
 
 //*****************************************************************************/
