@@ -69,7 +69,7 @@ app.post("/api/createOrderDetail", (req, res) =>{
 //  The following route updates a table ID to occupied  */
 //*******************************************************/
 app.post("/api/occupyTable",(req,res)=>{
-  let sql=`UPDATE tables SET occupied=${req.body.occupied} WHERE id=${req.body.id}`
+  let sql=`UPDATE Tables SET occupied=${req.body.occupied} WHERE id=${req.body.id}`
   db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
 
