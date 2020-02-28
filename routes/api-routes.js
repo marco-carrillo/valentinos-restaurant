@@ -173,12 +173,10 @@ app.get("/api/salesByHour",(req,res)=>{
 //*****************************************************************************/
 app.get("/api/tablesAvailable",(req,res)=>{
   let sql='SELECT name, id ' +
-          'FROM tables ' +
+          'FROM Tables ' +
           'WHERE occupied=false '+
           'ORDER BY id ASC ;'
-
-  db.sequelize.query(sql).then(tables => {
-    res.status(200).json(tables);});
+  db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
 
 
@@ -189,12 +187,11 @@ app.get("/api/tablesAvailable",(req,res)=>{
 //*******************************************************************************/
 app.get("/api/menu",(req,res)=>{
   let sql='SELECT t.name as type, m.id,m.name,m.price,t.menu_order '+
-          'FROM meals m '+
-          'LEFT JOIN meal_types t on t.id=m.meal_type_id '+
+          'FROM Meals m '+
+          'LEFT JOIN Meal_types t on t.id=m.meal_type_id '+
           'WHERE active=1 '+
           'ORDER BY t.menu_order ASC, m.price DESC ';
-  db.sequelize.query(sql).then(menu => {
-    res.status(200).json(menu);});
+  db.sequelize.query(sql).then(menu => {res.status(200).json(menu);});
 });
 
 //*******************************************************/
