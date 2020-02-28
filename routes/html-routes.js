@@ -49,6 +49,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../restricted/manager-new-user.html"));
   });
   //-------------------------------------------------------------------------------
+  app.get("/js/create-user.js", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/js/create-user.js"));
+  });
+  //-------------------------------------------------------------------------------
   app.get("/manager-profitability", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/manager-profitability.html"));
   });
