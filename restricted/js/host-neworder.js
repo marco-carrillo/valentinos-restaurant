@@ -14,11 +14,10 @@ function sendOrder(order,menu){
     //***********************************************************/
     //  Ensure diner's name is not empty (5 characters minimum) */
     //***********************************************************/
-
     if($('#diner-name').val().trim().length<5){
         usrAlert("Diner's name is empty","With such an awesome name, why leave it empty?","you'r right!",1,false);
         return;
-    }
+    };
 
     //************************************************************************************************/
     //  order is a big string that separates all the rows with the & sign.
@@ -45,6 +44,14 @@ function sendOrder(order,menu){
             pedido.push(object);
             total_order=total_order+qty*menu[row].price;
         }
+    };
+
+    //********************************************/
+    //  Will validate that the order is not zero */
+    //********************************************/
+    if(total_order<=0){
+        usrAlert("Order is empty","Come on, don't tell me you are not hungry?","Absolutely not!",1,false);
+        return;
     };
 
     //**************************************************************************************/
