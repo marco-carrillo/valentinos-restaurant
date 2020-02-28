@@ -78,7 +78,7 @@ app.post("/api/occupyTable",(req,res)=>{
 //  The following route changes the status of an order  */
 //*******************************************************/
 app.post("/api/changeOrderStatus",(req,res)=>{
-  let sql=`UPDATE orders SET status_id=${req.body.status_id} WHERE id=${req.body.id}`
+  let sql=`UPDATE Orders SET status_id=${req.body.status_id} WHERE id=${req.body.id}`
   db.sequelize.query(sql).then(orderStatus => {res.status(200).json({});});
 });
 
@@ -104,11 +104,11 @@ app.get("/api/allTablesInfo",(req,res)=>{
 app.post("/api/orderDetails",(req,res)=>{
   let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill, '+
           'TIME(o.createdAt) as ordered,m.id as meal_id, m.name as meal,d.quantity,d.total as item_total '+
-          'FROM orders o '+
-          'LEFT JOIN tables t on t.id=o.table_id '+
-          'LEFT JOIN order_statuses s on s.id=o.status_id '+
-          'LEFT JOIN order_details d on d.order_id=o.id '+
-          'LEFT JOIN meals m on m.id=d.meal_id '+
+          'FROM Orders o '+
+          'LEFT JOIN Tables t on t.id=o.table_id '+
+          'LEFT JOIN Order_statuses s on s.id=o.status_id '+
+          'LEFT JOIN Order_details d on d.order_id=o.id '+
+          'LEFT JOIN Meals m on m.id=d.meal_id '+
           `WHERE o.id=${req.body.id};`
   db.sequelize.query(sql).then(orderDetails => {res.status(200).json(orderDetails);});
 });
@@ -119,9 +119,9 @@ app.post("/api/orderDetails",(req,res)=>{
 //*******************************************************************************/
 app.get("/api/kitchenOrders",(req,res)=>{
     let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill,TIME(o.createdAt) as ordered '+
-            'FROM orders o '+
-            'LEFT JOIN tables t on t.id=o.table_id '+
-            'LEFT JOIN order_statuses s on s.id=o.status_id '+
+            'FROM Orders o '+
+            'LEFT JOIN Tables t on t.id=o.table_id '+
+            'LEFT JOIN Order_statuses s on s.id=o.status_id '+
             'WHERE o.status_id<3 '+
             'ORDER BY o.createdAt ASC;'
     db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
@@ -133,9 +133,9 @@ app.get("/api/kitchenOrders",(req,res)=>{
 //*******************************************************************************/
 app.get("/api/readyOrders",(req,res)=>{
   let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill,TIME(o.createdAt) as ordered '+
-          'FROM orders o '+
-          'LEFT JOIN tables t on t.id=o.table_id '+
-          'LEFT JOIN order_statuses s on s.id=o.status_id '+
+          'FROM Orders o '+
+          'LEFT JOIN Tables t on t.id=o.table_id '+
+          'LEFT JOIN Order_statuses s on s.id=o.status_id '+
           'WHERE o.status_id=3 '+
           'ORDER BY o.createdAt ASC;'
   db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
@@ -147,9 +147,9 @@ app.get("/api/readyOrders",(req,res)=>{
 //*******************************************************************************/
 app.get("/api/servedOrders",(req,res)=>{
   let sql='SELECT o.id, o.customer_name,t.name as tables,s.name as status,o.total_bill,TIME(o.createdAt) as ordered '+
-          'FROM orders o '+
-          'LEFT JOIN tables t on t.id=o.table_id '+
-          'LEFT JOIN order_statuses s on s.id=o.status_id '+
+          'FROM Orders o '+
+          'LEFT JOIN Tables t on t.id=o.table_id '+
+          'LEFT JOIN Order_statuses s on s.id=o.status_id '+
           'WHERE o.status_id=4 '+
           'ORDER BY o.createdAt ASC;'
   db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
