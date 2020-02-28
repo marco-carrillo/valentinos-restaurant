@@ -90,10 +90,9 @@ app.post("/api/changeOrderStatus",(req,res)=>{
 app.get("/api/allTablesInfo",(req,res)=>{
   let sql='SELECT tables.id AS table_id,tables.name AS table_name,tables.occupied AS table_occupied, '+
             'orders.customer_name AS customer_name,orders.total_bill AS total_bill, order_statuses.name AS order_status '+
-            'FROM `tables` '+ 
-            'LEFT JOIN `orders` ON orders.table_id=tables.id '+
-            'LEFT JOIN `order_statuses` ON order_statuses.id=orders.status_id';
-
+            'FROM tables '+ 
+            'LEFT JOIN orders ON orders.table_id=tables.id '+
+            'LEFT JOIN order_statuses ON order_statuses.id=orders.status_id';
     db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
 
