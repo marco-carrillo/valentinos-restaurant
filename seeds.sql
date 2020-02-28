@@ -1,3 +1,8 @@
+-- creating manager user
+
+INSERT INTO Users (email, password,salary,role_id,createdAt,updatedAt) VALUES("marco_carrillo@yahoo.com","$2a$10$m4lGOWiFAQ11e3ChYSvK4eaKVWRkhqJfGiAinAD2kXnKbuHLYY6re",0,1,current_timestamp(),current_timestamp());
+
+
 -- creating tables records
 
 INSERT INTO tables (name, occupied,max_seating,createdAt,updatedAt) VALUES("Table 1",false,2,current_timestamp(),current_timestamp());
