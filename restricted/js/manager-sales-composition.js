@@ -175,8 +175,6 @@ $.get("/api/salesToday",{}).
                         contentsFunction: function (value) { return "$"+value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
                     }, // valuelabels
 
-
-
                     name: "Data",
                     data: {
                         field: "value"
@@ -204,7 +202,11 @@ $.get("/api/salesToday",{}).
                 resizing: {
                     enabled: false
                 }
-            }
+            },
+            facetAxis: {
+                defaultUnitWidth: 100
+            },
+            area: { height:450, width:1200 }
         });
         // chart.updateSettings({area: { height:450, width:1400 }});
     });  // API call
