@@ -85,6 +85,14 @@ module.exports = function(app) {
   app.get("/js/manager-sales-composition.js", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../restricted/js/manager-sales-composition.js"));
   });
+  //-------------------------------------------------------------------------------
+  app.get("/manager-waterfall.html", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/manager-waterfall.html"));
+  });
+  //-------------------------------------------------------------------------------
+  app.get("/js/manager-waterfall.js", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../restricted/js/manager-waterfall.js"));
+  });
   //***************************************************/
   // the following are restricted routes for the host
   //***************************************************/

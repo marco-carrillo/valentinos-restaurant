@@ -22,6 +22,7 @@ $.get("/api/salesToday",{}).
         let array2=[];
         let array3=[];
         let arraySales=[];
+        let arrayWtrfall=[];
         let item={name:"",value:0};
         let name=["","","",""];
         let total=[0,0,0,0];
@@ -58,22 +59,29 @@ $.get("/api/salesToday",{}).
         //  we always check that there are sales for each category
         //*******************************************************************/
         if(array0.length>0){
-            arraySales.push({name: name[0],value:  total[0],subvalues: array0});
+            arraySales.push({name: name[0],value:  total[0],subvalues: array0});        //  Pie chart
+            arrayWtrfall.push({id: name[0],name: name[0], value:total[0], offset:0,subvalues: array0});   //  Waterfall chart
         };
         if(array1.length>0){
-            arraySales.push({name: name[1],value:  total[1],subvalues: array1});
+            arraySales.push({name: name[1],value:  total[1],subvalues: array1});   // Pie chart
+            arrayWtrfall.push({id: name[1],name: name[1], value:total[1], offset:total[0],subvalues: array1});   //  Waterfall chart
         };
         if(array2.length>0){
-            arraySales.push({name: name[2],value:  total[2],subvalues: array2});
+            arraySales.push({name: name[2],value:  total[2],subvalues: array2});   // Pie chart
+            arrayWtrfall.push({id: name[2],name: name[2], value:total[2], offset:total[0]+total[1],subvalues: array2});   //  Waterfall chart
         };
         if(array3.length>0){
-            arraySales.push({name: name[3],value:  total[3],subvalues: array3});
+            arraySales.push({name: name[3],value:  total[3],subvalues: array3});   // Pie chart
+            arrayWtrfall.push({id: name[3],name: name[3], value:total[3], offset:total[0]+total[1]+total[2],subvalues: array3});   //  Waterfall chart
         };
-        
+
+        let total_array=array0.concat(array1).concat(array2).concat(array3);
+        arrayWtrfall.push({id: "Total",name: "Total", value:total[0]+total[1]+total[2]+total[3],offset:0,subvalues:total_array});   //  Waterfall chart
         //******************************************************************/
         // After arrays have been built, then we will construct the object
         //******************************************************************/
         let salesDay={ "subvalues": arraySales };
+        let salesWF ={ id: "","subvalues": arrayWtrfall};
         $("#salesMsg").text(`Total sales today $${numberWithCommas(total[0]+total[1]+total[2]+total[3])}`);
         $("#salesHdr").text(`Today's sales distribution $${numberWithCommas(total[0]+total[1]+total[2]+total[3])}`);
 
@@ -96,8 +104,99 @@ $.get("/api/salesToday",{}).
                 resizing: {
                     enabled: false
                 }
-            }
+            },
+
+            slice: {
+                style: {
+                    label: {
+                        backgroundStyle: {
+                            lineColor: "blue",
+                            fillColor: "#77c277",
+                            shadowBlur: 4,
+                            shadowColor: "#000000"
+                        },
+                        padding: 15,
+                        borderRadius: 7
+                    },
+                    insideLabel: {
+                        textStyle: {
+                            font: "16px Arial",
+                            fillColor: "rgba(200,255,200,0.1)",
+                            shadowColor: "#000000"
+                        }
+                    }
+                }
+            } // slice
+
         });    // PieChart object
+        chart.updateSettings({area: { height:450, width:1200 }});
+
+        //*****************************************/
+        //  Waterfall chart is being built now
+        //*****************************************/
+        chart= new FacetChart({
+            series: [
+                {
+                    name: "",
+                    data: {
+                        field: "offset"
+                    },
+                    stack: "default",
+                    style: {
+                        fillColor: "transparent"
+                    },
+                    type: "columns"
+                },
+                {
+
+                    valueLabels: {
+                        enabled: true,
+                        position: "aboveValue",
+                        style: {
+                            textStyle: {
+                                font: "16pt Arial"
+                            },
+                            backgroundStyle: {
+                                lineColor: "#ccc",
+                                lineWidth: 1,
+                                fillColor: "rgba(200,200,200,0.5)"
+                            },
+                            borderRadius: 2
+                        },
+                        contentsFunction: function (value) { return "$"+value.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+                    }, // valuelabels
+
+
+
+                    name: "Data",
+                    data: {
+                        field: "value"
+                    },
+                    stack: "default",
+                    style: {
+                        fillColor: "#b10400"
+                    },
+                    type: "columns"
+                },
+                
+            ],
+            "style": [],
+            container: "salesWaterfall",
+            data: [
+                {
+                    preloaded:salesWF
+                }
+            ],
+            toolbar: {
+                fullscreen: true,
+                enabled: true
+            },
+            interaction: {
+                resizing: {
+                    enabled: false
+                }
+            }
+        });
         chart.updateSettings({area: { height:450, width:1200 }});
     });  // API call
 
