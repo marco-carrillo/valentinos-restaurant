@@ -21,6 +21,10 @@ $.get("/api/salesToday",{}).
         let array1=[];
         let array2=[];
         let array3=[];
+        let arrWf0=[];
+        let arrWf1=[];
+        let arrWf2=[];
+        let arrWf3=[];
         let arraySales=[];
         let arrayWtrfall=[];
         let item={name:"",value:0};
@@ -28,26 +32,31 @@ $.get("/api/salesToday",{}).
         let total=[0,0,0,0];
 
         for(let i=0;i<salesData.length;i++){
-            item={name: salesData[i].meal , value: parseInt(salesData[i].meals_total)};  // Creates Object
+            item0={name: salesData[i].meal , value: parseInt(salesData[i].meals_total)};  // Creates Object
+            item1={name: salesData[i].meal , value: parseInt(salesData[i].meals_total),offset:0};  // Creates Object
 
             switch (salesData[i].category_id){
                 case 1:
-                    array0.push(item);
+                    array0.push(item0);   // For piechart
+                    arrWf0.push(item1);   // For waterfall
                     name[0]=salesData[i].category;
                     total[0]=total[0]+parseInt(salesData[i].meals_total);
                     break;
                 case 2:
-                    array1.push(item);
+                    array1.push(item0);   // For piechart
+                    arrWf1.push(item1);   // For waterfall
                     name[1]=salesData[i].category;
                     total[1]=total[1]+parseInt(salesData[i].meals_total);
                     break;
                 case 3:
-                    array2.push(item);
+                    array2.push(item0);   // For piechart
+                    arrWf2.push(item1);   // For waterfall
                     name[2]=salesData[i].category;
                     total[2]=total[2]+parseInt(salesData[i].meals_total);
                     break;
                 case 4:
-                    array3.push(item);
+                    array3.push(item0);   // For piechart
+                    arrWf3.push(item1);   // For waterfall
                     name[3]=salesData[i].category;
                     total[3]=total[3]+parseInt(salesData[i].meals_total);
                     break;
@@ -60,19 +69,19 @@ $.get("/api/salesToday",{}).
         //*******************************************************************/
         if(array0.length>0){
             arraySales.push({name: name[0],value:  total[0],subvalues: array0});        //  Pie chart
-            arrayWtrfall.push({id: name[0],name: name[0], value:total[0], offset:0,subvalues: array0});   //  Waterfall chart
+            arrayWtrfall.push({id: name[0],name: name[0], value:total[0], offset:0,subvalues: arrWf0});   //  Waterfall chart
         };
         if(array1.length>0){
             arraySales.push({name: name[1],value:  total[1],subvalues: array1});   // Pie chart
-            arrayWtrfall.push({id: name[1],name: name[1], value:total[1], offset:total[0],subvalues: array1});   //  Waterfall chart
+            arrayWtrfall.push({id: name[1],name: name[1], value:total[1], offset:total[0],subvalues: arrWf1});   //  Waterfall chart
         };
         if(array2.length>0){
             arraySales.push({name: name[2],value:  total[2],subvalues: array2});   // Pie chart
-            arrayWtrfall.push({id: name[2],name: name[2], value:total[2], offset:total[0]+total[1],subvalues: array2});   //  Waterfall chart
+            arrayWtrfall.push({id: name[2],name: name[2], value:total[2], offset:total[0]+total[1],subvalues: arrWf2});   //  Waterfall chart
         };
         if(array3.length>0){
             arraySales.push({name: name[3],value:  total[3],subvalues: array3});   // Pie chart
-            arrayWtrfall.push({id: name[3],name: name[3], value:total[3], offset:total[0]+total[1]+total[2],subvalues: array3});   //  Waterfall chart
+            arrayWtrfall.push({id: name[3],name: name[3], value:total[3], offset:total[0]+total[1]+total[2],subvalues: arrWf3});   //  Waterfall chart
         };
 
         let total_array=array0.concat(array1).concat(array2).concat(array3);
