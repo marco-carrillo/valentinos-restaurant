@@ -3,8 +3,6 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app) {
-
-
   //***************************************************************************/
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -14,9 +12,11 @@ module.exports = function(app) {
     res.json(req.user);
   });
 
+  //*****************************************************************************************************************/
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
+  //*****************************************************************************************************************/
   app.post("/api/signup", function(req, res) {
     db.User.create({
       email: req.body.email,
@@ -30,11 +30,10 @@ module.exports = function(app) {
       });
   });
 
- // Route for creating a new user
- app.post("/api/createuser", function(req, res){
-
-  console.log(req.body);
-
+  //********************************/
+  // Route for creating a new user
+  //********************************/
+  app.post("/api/createuser", function(req, res){
   db.User.create(req.body).then (function(dbUser){
     res.status(200).json({});
 
@@ -73,7 +72,6 @@ app.post("/api/occupyTable",(req,res)=>{
   db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
 
-
 //*******************************************************/
 //  The following route changes the status of an order  */
 //*******************************************************/
@@ -81,7 +79,6 @@ app.post("/api/changeOrderStatus",(req,res)=>{
   let sql=`UPDATE Orders SET status_id=${req.body.status_id} WHERE id=${req.body.id}`
   db.sequelize.query(sql).then(orderStatus => {res.status(200).json({});});
 });
-
 
 //*******************************************************************************/
 //  The following route returns information about all of the tables, and their  */
@@ -95,7 +92,6 @@ app.get("/api/allTablesInfo",(req,res)=>{
           'LEFT JOIN Order_statuses os ON os.id=o.status_id;';
   db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
-
 
 //****************************************************************************/
 //  The following route returns information about an order ID passed         */
@@ -194,7 +190,6 @@ app.get("/api/tablesAvailable",(req,res)=>{
           'ORDER BY id ASC ;'
   db.sequelize.query(sql).then(tables => {res.status(200).json(tables);});
 });
-
 
 //*******************************************************************************/
 //  The following route returns the full menu, marked by the manager as active  */
