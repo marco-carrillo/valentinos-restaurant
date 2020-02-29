@@ -206,6 +206,6 @@ $.get("/api/salesToday",{}).
                 }
             }
         });
-        chart.updateSettings({area: { height:450, width:1200 }});
+        // chart.updateSettings({area: { height:450, width:1400 }});
     });  // API call
 
