@@ -119,7 +119,7 @@ app.get("/api/salesToday",(req,res)=>{
           'FROM Order_details od '+
           'LEFT JOIN Meals m on m.id=od.meal_id '+
           'LEFT JOIN Meal_types mt on mt.id=m.meal_type_id '+
-          'WHERE DATE(od.createdAt)=CURDATE() '+
+          // 'WHERE DATE(od.createdAt)=CURDATE() '+ 
           'GROUP BY category_id,category,meal_id,meal '+
           'ORDER BY category_id,category,meal_id,meal;'
   db.sequelize.query(sql).then(orders => {res.status(200).json(orders);});
